@@ -1,0 +1,12 @@
+p {
+  margin: 0;
+  line-height: 1.6;
+  color: #3d3d3d;
+}
+
+code {
+  font-size: 0.9em;
+  background: #eee;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}

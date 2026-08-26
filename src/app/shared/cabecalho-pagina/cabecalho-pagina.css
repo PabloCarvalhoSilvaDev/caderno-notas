@@ -1,0 +1,15 @@
+.cabecalho-pagina {
+  margin-bottom: 1.5rem;
+}
+
+.cabecalho-pagina h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.cabecalho-pagina p {
+  margin: 0.5rem 0 0;
+  color: #5c5c5c;
+}
