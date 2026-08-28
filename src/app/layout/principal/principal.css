@@ -42,6 +42,7 @@
   font-weight: 700;
   text-decoration: none;
   color: inherit;
+  grid-column: 2;
 }
 
 .principal__usuario {
