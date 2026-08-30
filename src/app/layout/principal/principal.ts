@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { Toast } from 'primeng/toast';
 
 /**
  * Shell visual da aplicação (header + área de conteúdo).
@@ -7,7 +8,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
  */
 @Component({
   selector: 'app-principal',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, Toast],
   templateUrl: './principal.html',
   styleUrl: './principal.css',
 })

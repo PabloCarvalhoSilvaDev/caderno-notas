@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { MessageService } from 'primeng/api';
 import { provideRouter } from '@angular/router';
 
 import { Principal } from './principal';
@@ -7,7 +8,7 @@ describe('Principal', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Principal],
-      providers: [provideRouter([])],
+      providers: [provideRouter([]), MessageService],
     }).compileComponents();
   });
 
@@ -16,24 +17,11 @@ describe('Principal', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('deve exibir o nome do usuário', () => {
+  it('deve exibir a marca da aplicação', () => {
     const fixture = TestBed.createComponent(Principal);
     fixture.detectChanges();
 
     const elemento = fixture.nativeElement as HTMLElement;
-    expect(elemento.querySelector('.principal__usuario')?.textContent).toContain('Pablo Carvalho Silva');
-  });
-
-  it('deve alternar o menu lateral', () => {
-    const fixture = TestBed.createComponent(Principal);
-    fixture.detectChanges();
-
-    const menu = fixture.nativeElement.querySelector('.principal__menu') as HTMLElement;
-    expect(menu.classList.contains('is-recolhido')).toBeTrue();
-
-    (fixture.nativeElement.querySelector('.principal__alternar') as HTMLButtonElement).click();
-    fixture.detectChanges();
-
-    expect(menu.classList.contains('is-recolhido')).toBeFalse();
+    expect(elemento.querySelector('.principal__marca')?.textContent).toContain('Caderno de Notas');
   });
 });
