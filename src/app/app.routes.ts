@@ -9,14 +9,17 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        title: 'Início',
-        loadComponent: () => import('./features/inicio/inicio').then((m) => m.Inicio),
+        redirectTo: 'notas',
+        pathMatch: 'full',
       },
-
+      {
+        path: 'notas',
+        loadChildren: () => import('./features/notas/notas.routes').then((m) => m.NOTAS_ROUTES),
+      }
     ],
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: '/notas',
   },
 ];
