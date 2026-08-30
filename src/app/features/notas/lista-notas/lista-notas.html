@@ -1,0 +1,44 @@
+<section class="lista-notas">
+  <header class="lista-notas__topo">
+    <h1>Notas</h1>
+    <a routerLink="nova" class="lista-notas__nova"><i class="pi pi-plus"></i> Nota </a>
+  </header>
+
+  <div class="lista-notas__painel">
+    <label class="lista-notas__busca" for="busca-notas">
+      <span class="lista-notas__busca-rotulo">Buscar</span>
+      <p-autoComplete
+        inputId="busca-notas"
+        [ngModel]="busca()"
+        (ngModelChange)="busca.set($event ?? '')"
+        [suggestions]="sugestoes()"
+        (completeMethod)="sugerir($event)"
+        [showClear]="true"
+        [fluid]="true"
+        placeholder="Buscar por título ou texto"
+        emptyMessage="Nenhuma sugestão"
+      />
+    </label>
+
+    <ul class="lista-notas__grade">
+      @for (nota of notasFiltradas(); track nota.id) {
+        <li>
+          <a class="nota-card" [routerLink]="['editar', nota.id]">
+            <h2>{{ nota.id }}# {{ nota.titulo }}</h2>
+            <time [attr.datetime]="nota.dataAtualizacao.toISOString()">
+              {{ nota.dataAtualizacao | date: 'dd/MM/yyyy' }}
+            </time>
+          </a>
+        </li>
+      } @empty {
+        <li class="lista-notas__vazia">
+          @if (busca()) {
+            Nenhuma nota encontrada.
+          } @else {
+            Nenhuma nota ainda. Crie a primeira.
+          }
+        </li>
+      }
+    </ul>
+  </div>
+</section>
