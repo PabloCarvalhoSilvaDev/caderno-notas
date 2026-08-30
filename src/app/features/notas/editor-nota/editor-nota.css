@@ -1,0 +1,101 @@
+.editor-nota {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: min(100%, 720px);
+  margin: 0 auto;
+  background: var(--cor-superficie);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.editor-nota__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.editor-nota__campo label {
+  font-weight: 600;
+}
+
+.editor-nota__campo input,
+.editor-nota__campo textarea,
+.editor-nota__campo .p-inputtext,
+.editor-nota__campo .p-textarea {
+  width: 100%;
+  background: var(--cor-superficie);
+  color: var(--cor-texto-campo);
+  caret-color: var(--cor-texto-campo);
+}
+
+.editor-nota__campo textarea {
+  resize: vertical;
+  min-height: 120px;
+  max-height: 4000px;
+  height: 220px;
+}
+
+.editor-nota__campo input:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.editor-nota__datas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .editor-nota__datas {
+    grid-template-columns: 1fr;
+  }
+}
+
+.editor-nota__acao {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.editor-nota__acao-fim {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.editor-nota__acao .p-button-success,
+.editor-nota__acao .p-button-danger,
+.editor-nota__acao .p-button-success .p-button-label,
+.editor-nota__acao .p-button-danger .p-button-label {
+  color: #fff;
+}
+
+.editor-nota__contador {
+  display: block;
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--cor-placeholder);
+}
+
+.required,
+.editor-nota__label--invalido {
+  color: var(--cor-erro);
+}
+
+.editor-nota__erro {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  color: var(--cor-erro);
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.editor-nota__erro .pi {
+  font-size: 0.85rem;
+}
+

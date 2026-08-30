@@ -1,0 +1,108 @@
+<div>
+  <p-confirmdialog />
+  <form class="editor-nota" [formGroup]="formulario" (ngSubmit)="salvarNota()">
+    <div class="editor-nota__campo">
+      <label
+        [class.editor-nota__label--invalido]="formulario.controls.titulo.invalid && formulario.controls.titulo.touched"
+        for="titulo"
+      >
+        Título <span class="required">*</span>
+      </label>
+      <input
+        id="titulo"
+        type="text"
+        pInputText
+        formControlName="titulo"
+        [maxlength]="tituloMaximo"
+        [attr.aria-invalid]="formulario.controls.titulo.invalid && formulario.controls.titulo.touched"
+        [attr.aria-describedby]="
+          formulario.controls.titulo.invalid && formulario.controls.titulo.touched ? 'titulo-erro' : null
+        "
+      />
+      @if (formulario.controls.titulo.invalid && formulario.controls.titulo.touched) {
+        <p id="titulo-erro" class="editor-nota__erro" role="alert">
+          <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+          Título é obrigatório
+        </p>
+      }
+      <small class="editor-nota__contador"
+        >{{ formulario.controls.titulo.value.length }} / {{ tituloMaximo }}</small
+      >
+    </div>
+    <div class="editor-nota__datas">
+      <div class="editor-nota__campo">
+        <label for="dataCriacao">Data de criação</label>
+        <input
+          id="dataCriacao"
+          type="text"
+          pInputText
+          [value]="dataCriacao()"
+          disabled
+          placeholder="Definida ao salvar"
+        />
+      </div>
+      <div class="editor-nota__campo">
+        <label for="dataAtualizacao">Data de atualização</label>
+        <input
+          id="dataAtualizacao"
+          type="text"
+          pInputText
+          [value]="dataAtualizacao()"
+          disabled
+          placeholder="Definida ao salvar"
+        />
+      </div>
+    </div>
+
+    <div class="editor-nota__campo editor-nota__campo--texto">
+      <label
+        [class.editor-nota__label--invalido]="formulario.controls.texto.invalid && formulario.controls.texto.touched"
+        for="texto"
+      >
+        Texto <span class="required">*</span>
+      </label>
+      <textarea
+        id="texto"
+        pTextarea
+        formControlName="texto"
+        rows="12"
+        [maxlength]="textoMaximo"
+        [attr.aria-invalid]="formulario.controls.texto.invalid && formulario.controls.texto.touched"
+        [attr.aria-describedby]="
+          formulario.controls.texto.invalid && formulario.controls.texto.touched ? 'texto-erro' : null
+        "
+      ></textarea>
+      @if (formulario.controls.texto.invalid && formulario.controls.texto.touched) {
+        <p id="texto-erro" class="editor-nota__erro" role="alert">
+          <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+          Texto é obrigatório
+        </p>
+      }
+      <small class="editor-nota__contador"
+        >{{ formulario.controls.texto.value.length }} / {{ textoMaximo }}</small
+      >
+    </div>
+
+    <div class="editor-nota__acao">
+      @if (id()) {
+        <button
+          type="button"
+          pButton
+          severity="contrast"
+          label="Excluir"
+          (click)="pedirExclusao()"
+        ></button>
+      }
+      <div class="editor-nota__acao-fim">
+        <button
+          type="button"
+          pButton
+          severity="danger"
+          label="Cancelar"
+          routerLink="/notas"
+        ></button>
+        <button type="submit" pButton severity="success" label="Salvar"></button>
+      </div>
+    </div>
+  </form>
+</div>
