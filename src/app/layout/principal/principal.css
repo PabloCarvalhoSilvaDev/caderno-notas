@@ -33,3 +33,18 @@
   padding: 2rem 1.5rem;
   flex: 1;
 }
+
+.principal__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  background: var(--cor-superficie);
+  border-top: 1px solid var(--cor-borda);
+}
+
+.principal__rodape p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--cor-texto);
+}

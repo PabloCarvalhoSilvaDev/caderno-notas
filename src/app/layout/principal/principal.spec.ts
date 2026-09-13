@@ -24,4 +24,14 @@ describe('Principal', () => {
     const elemento = fixture.nativeElement as HTMLElement;
     expect(elemento.querySelector('.principal__marca')?.textContent).toContain('Caderno de Notas');
   });
+
+  it('deve exibir o rodapé com o crédito do desenvolvedor', () => {
+    const fixture = TestBed.createComponent(Principal);
+    fixture.detectChanges();
+
+    const elemento = fixture.nativeElement as HTMLElement;
+    expect(elemento.querySelector('.principal__rodape')?.textContent).toContain(
+      'Desenvolvido por Pablo Carvalho Silva',
+    );
+  });
 });
