@@ -10,7 +10,7 @@
       <p-autoComplete
         inputId="busca-notas"
         [ngModel]="busca()"
-        (ngModelChange)="busca.set($event ?? '')"
+        (ngModelChange)="alterarBusca($event ?? '')"
         [suggestions]="sugestoes()"
         (completeMethod)="sugerir($event)"
         [showClear]="true"
@@ -21,7 +21,7 @@
     </label>
 
     <ul class="lista-notas__grade">
-      @for (nota of notasFiltradas(); track nota.id) {
+      @for (nota of notasPaginadas(); track nota.id) {
         <li>
           <a class="nota-card" [routerLink]="['editar', nota.id]">
             <h2>{{ nota.id }}# {{ nota.titulo }}</h2>
@@ -40,5 +40,17 @@
         </li>
       }
     </ul>
+
+    @if (notasFiltradas().length > 0) {
+      <p-paginator
+        [first]="primeiroItem()"
+        [rows]="itensPorPagina()"
+        [rowsPerPageOptions]="opcoesItensPorPagina"
+        [totalRecords]="notasFiltradas().length"
+        [showCurrentPageReport]="true"
+        currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords} notas"
+        (onPageChange)="mudarPagina($event)"
+      />
+    }
   </div>
 </section>
