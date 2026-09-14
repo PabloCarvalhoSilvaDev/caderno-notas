@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "arquitetura-angular-recomendada": {
+    "caderno-notas": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -56,10 +56,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "arquitetura-angular-recomendada:build:production"
+              "buildTarget": "caderno-notas:build:production"
             },
             "development": {
-              "buildTarget": "arquitetura-angular-recomendada:build:development"
+              "buildTarget": "caderno-notas:build:development"
             }
           },
           "defaultConfiguration": "development"
