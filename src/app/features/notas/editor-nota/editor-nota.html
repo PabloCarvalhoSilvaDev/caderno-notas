@@ -30,7 +30,7 @@
       >
     </div>
 
-    <div class="editor-nota__campo editor-nota__campo--texto">
+    <div class="editor-nota__campo">
       <label
         [class.editor-nota__label--invalido]="formulario.controls.texto.invalid && formulario.controls.texto.touched"
         for="texto"
@@ -69,7 +69,6 @@
             pInputText
             [value]="dataCriacao()"
             disabled
-            placeholder="Definida ao salvar"
           />
         </div>
         <div class="editor-nota__campo">
@@ -80,7 +79,6 @@
             pInputText
             [value]="dataAtualizacao()"
             disabled
-            placeholder="Definida ao salvar"
           />
         </div>
       </div>

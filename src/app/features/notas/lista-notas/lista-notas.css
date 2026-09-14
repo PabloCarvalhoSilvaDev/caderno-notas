@@ -80,15 +80,6 @@
   font-weight: 600;
 }
 
-.nota-card p {
-  margin: 0.4rem 0 0;
-  color: #5c5c5c;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 .nota-card time {
   display: block;
   margin-top: 0.75rem;
