@@ -1,35 +1,27 @@
 import { isPlatformBrowser } from '@angular/common';
-import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
+import { afterNextRender, inject, Injectable, PLATFORM_ID, signal } from '@angular/core';
 
 import { Nota } from './nota';
 
 const CHAVE_ARMAZENAMENTO = 'caderno-notas.notas';
-
-const NOTAS_INICIAIS: Nota[] = [
-  {
-    id: '1',
-    titulo: 'Ideias para o caderno',
-    texto: 'Lista clicável, editor único para criar e editar, exclusão no próprio editor.',
-    dataCriacao: new Date('2026-08-20'),
-    dataAtualizacao: new Date('2026-08-28'),
-  },
-  {
-    id: '2',
-    titulo: 'Compras da semana',
-    texto: 'Café, pão, leite e frutas.',
-    dataCriacao: new Date('2026-08-25'),
-    dataAtualizacao: new Date('2026-08-25'),
-  },
-];
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotasService {
   private readonly plataforma = inject(PLATFORM_ID);
-  private readonly notasInternas = signal<Nota[]>(this.carregar());
+  private readonly notasInternas = signal<Nota[]>([]);
+  private readonly armazenamentoSincronizado = signal(false);
 
   readonly notas = this.notasInternas.asReadonly();
+  readonly armazenamentoPronto = this.armazenamentoSincronizado.asReadonly();
+
+  constructor() {
+    afterNextRender(() => {
+      this.sincronizarDoArmazenamento();
+      this.armazenamentoSincronizado.set(true);
+    });
+  }
 
   listar(): Nota[] {
     return [...this.notasInternas()];
@@ -69,16 +61,14 @@ export class NotasService {
     return true;
   }
 
-  private carregar(): Nota[] {
-    if (!isPlatformBrowser(this.plataforma)) {
-      return this.ordenarPorId(NOTAS_INICIAIS);
-    }
+  private sincronizarDoArmazenamento(): void {
+    this.gravar(this.carregarDoArmazenamento());
+  }
 
+  private carregarDoArmazenamento(): Nota[] {
     const bruto = localStorage.getItem(CHAVE_ARMAZENAMENTO);
     if (!bruto) {
-      const iniciais = this.ordenarPorId(NOTAS_INICIAIS);
-      this.persistir(iniciais);
-      return iniciais;
+      return [];
     }
 
     try {
@@ -93,11 +83,9 @@ export class NotasService {
         dataCriacao: new Date(nota.dataCriacao),
         dataAtualizacao: new Date(nota.dataAtualizacao),
       }));
-      const normalizadas = this.ordenarPorId(this.normalizarIds(hidratadas));
-      this.persistir(normalizadas);
-      return normalizadas;
+      return this.ordenarPorId(this.normalizarIds(hidratadas));
     } catch {
-      return this.ordenarPorId(NOTAS_INICIAIS);
+      return [];
     }
   }
 

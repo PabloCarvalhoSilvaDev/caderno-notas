@@ -65,6 +65,14 @@ export class EditorNota {
     toObservable(this.id)
       .pipe(takeUntilDestroyed())
       .subscribe((id) => this.preencherFormulario(id));
+
+    toObservable(this.notasService.armazenamentoPronto)
+      .pipe(takeUntilDestroyed())
+      .subscribe((pronto) => {
+        if (pronto) {
+          this.preencherFormulario(this.id());
+        }
+      });
   }
 
   salvarNota() {
@@ -122,15 +130,19 @@ export class EditorNota {
     }
 
     const nota = this.notasService.buscarPorId(id);
-    if (!nota) {
-      void this.router.navigate(['/notas']);
+    if (nota) {
+      this.formulario.reset({
+        titulo: nota.titulo,
+        texto: nota.texto,
+      });
       return;
     }
 
-    this.formulario.reset({
-      titulo: nota.titulo,
-      texto: nota.texto,
-    });
+    if (!this.notasService.armazenamentoPronto()) {
+      return;
+    }
+
+    void this.router.navigate(['/notas']);
   }
 
   private formatarData(data: Date): string {

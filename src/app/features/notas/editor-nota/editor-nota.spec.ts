@@ -27,8 +27,13 @@ describe('EditorNota', () => {
       providers: [provideRouter([]), MessageService],
     }).compileComponents();
 
+    const nota = TestBed.inject(NotasService).adicionar(
+      'Ideias para o caderno',
+      'Lista clicável, editor único para criar e editar, exclusão no próprio editor.',
+    );
+
     const fixture: ComponentFixture<EditorNota> = TestBed.createComponent(EditorNota);
-    fixture.componentRef.setInput('id', '1');
+    fixture.componentRef.setInput('id', nota.id);
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -48,8 +53,13 @@ describe('EditorNota', () => {
       providers: [provideRouter([]), MessageService],
     }).compileComponents();
 
+    const nota = TestBed.inject(NotasService).adicionar(
+      'Ideias para o caderno',
+      'Lista clicável, editor único para criar e editar, exclusão no próprio editor.',
+    );
+
     const fixture: ComponentFixture<EditorNota> = TestBed.createComponent(EditorNota);
-    fixture.componentRef.setInput('id', '1');
+    fixture.componentRef.setInput('id', nota.id);
     fixture.detectChanges();
     await fixture.whenStable();
 
@@ -58,7 +68,7 @@ describe('EditorNota', () => {
 
     fixture.componentInstance.excluirNota();
 
-    expect(TestBed.inject(NotasService).buscarPorId('1')).toBeUndefined();
+    expect(TestBed.inject(NotasService).buscarPorId(nota.id)).toBeUndefined();
     expect(router.navigate).toHaveBeenCalledWith(['/notas']);
   });
 });
