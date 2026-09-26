@@ -1,6 +1,6 @@
 [build]
 command = "ng build --configuration=production"
-publish = "dist/caderno-notas/browser"
+publish = "dist/caderno-notas"
 
 [[redirects]]
 from = "/*"
