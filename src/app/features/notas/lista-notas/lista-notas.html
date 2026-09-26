@@ -5,52 +5,67 @@
   </header>
 
   <div class="lista-notas__painel">
-    <label class="lista-notas__busca" for="busca-notas">
-      <span class="lista-notas__busca-rotulo">Buscar</span>
-      <p-autoComplete
-        inputId="busca-notas"
-        [ngModel]="busca()"
-        (ngModelChange)="alterarBusca($event ?? '')"
-        [suggestions]="sugestoes()"
-        (completeMethod)="sugerir($event)"
-        [showClear]="true"
-        [fluid]="true"
-        placeholder="Buscar por título ou texto"
-        emptyMessage="Nenhuma sugestão"
-      />
-    </label>
+    @if (notas().length > 0) {
+      <label class="lista-notas__busca" for="busca-notas">
+        <p-autoComplete
+          inputId="busca-notas"
+          [ngModel]="busca()"
+          (ngModelChange)="alterarBusca($event ?? '')"
+          [suggestions]="sugestoes()"
+          (completeMethod)="sugerir($event)"
+          [showClear]="true"
+          [fluid]="true"
+          placeholder="Buscar por título ou texto"
+          emptyMessage="Nenhuma sugestão"
+        />
+      </label>
 
-    <ul class="lista-notas__grade">
-      @for (nota of notasPaginadas(); track nota.id) {
-        <li>
-          <a class="nota-card" [routerLink]="['editar', nota.id]">
-            <h2>{{ nota.id }}# {{ nota.titulo }}</h2>
-            <time [attr.datetime]="nota.dataAtualizacao.toISOString()">
-              {{ nota.dataAtualizacao | date: 'dd/MM/yyyy' }}
-            </time>
-          </a>
-        </li>
-      } @empty {
-        <li class="lista-notas__vazia">
-          @if (busca()) {
-            Nenhuma nota encontrada.
-          } @else {
-            Nenhuma nota ainda. Crie a primeira.
+      @if (notasFiltradas().length === 0) {
+        <div class="lista-notas__vazia">
+          <p>Nenhuma nota encontrada para essa busca.</p>
+        </div>
+      } @else {
+        <ul class="lista-notas__grade">
+          @for (nota of notasPaginadas(); track nota.id) {
+            <li>
+              <a class="nota-card" [routerLink]="['editar', nota.id]">
+                <h2 [attr.title]="nota.titulo">{{ nota.id }}- {{ nota.titulo }}</h2>
+                <time [attr.datetime]="nota.dataAtualizacao.toISOString()">
+                  {{ nota.dataAtualizacao | date: 'dd/MM/yyyy' }}
+                </time>
+              </a>
+            </li>
           }
-        </li>
-      }
-    </ul>
+        </ul>
 
-    @if (notasFiltradas().length > 0) {
-      <p-paginator
-        [first]="primeiroItem()"
-        [rows]="itensPorPagina()"
-        [rowsPerPageOptions]="opcoesItensPorPagina"
-        [totalRecords]="notasFiltradas().length"
-        [showCurrentPageReport]="true"
-        currentPageReportTemplate="Mostrando {first} - {last} de {totalRecords} notas"
-        (onPageChange)="mudarPagina($event)"
-      />
+        <p-paginator
+          styleClass="lista-notas__paginador"
+          [first]="primeiroItem()"
+          [rows]="itensPorPagina()"
+          [rowsPerPageOptions]="opcoesItensPorPagina()"
+          [totalRecords]="notasFiltradas().length"
+          [showCurrentPageReport]="true"
+          currentPageReportTemplate="{first}–{last} de {totalRecords}"
+          (onPageChange)="mudarPagina($event)"
+        />
+      }
+    } @else if (!armazenamentoPronto()) {
+      <div class="lista-notas__vazia" aria-busy="true" aria-live="polite">
+        <i class="pi pi-spin pi-spinner lista-notas__spinner" aria-hidden="true"></i>
+        <span class="lista-notas__spinner-texto">Carregando notas</span>
+      </div>
+    } @else {
+      <div class="lista-notas__vazia">
+        <div class="lista-notas__boas-vindas">
+          <i class="pi pi-book" aria-hidden="true"></i>
+          <h2>Bem-vindo ao Caderno de Notas</h2>
+          <p>
+            Um espaço simples para guardar ideias, listas e lembretes. Tudo fica salvo neste
+            navegador, sem conta e sem servidor.
+          </p>
+          <p>Crie a primeira nota e comece a organizar o que importa.</p>
+        </div>
+      </div>
     }
   </div>
 </section>

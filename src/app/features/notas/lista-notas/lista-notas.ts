@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, computed, inject, signal } from '@angular/core';
+import { afterNextRender, Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AutoComplete, AutoCompleteCompleteEvent } from 'primeng/autocomplete';
@@ -7,6 +7,20 @@ import { Paginator, PaginatorState } from 'primeng/paginator';
 
 import { Nota } from '../nota';
 import { NotasService } from '../notas';
+
+/** Celular: 4. Tablet 768–1024: 12. Desktop: 9. */
+export function paginacaoPorLargura(
+  estreita: boolean,
+  tablet: boolean,
+): { itens: number; opcoes: number[] } {
+  if (estreita) {
+    return { itens: 4, opcoes: [4, 8, 12] };
+  }
+  if (tablet) {
+    return { itens: 12, opcoes: [12, 24, 36] };
+  }
+  return { itens: 9, opcoes: [9, 18, 27] };
+}
 
 @Component({
   selector: 'app-lista-notas',
@@ -16,12 +30,19 @@ import { NotasService } from '../notas';
 })
 export class ListaNotas {
   private readonly notasService = inject(NotasService);
+  private readonly destroyRef = inject(DestroyRef);
   protected readonly notas = this.notasService.notas;
+  protected readonly armazenamentoPronto = this.notasService.armazenamentoPronto;
   readonly busca = signal('');
   protected readonly sugestoes = signal<string[]>([]);
   protected readonly primeiroItem = signal(0);
+  protected readonly telaEstreita = signal(false);
+  protected readonly telaTablet = signal(false);
   protected readonly itensPorPagina = signal(9);
-  protected readonly opcoesItensPorPagina = [9, 18, 27];
+
+  protected readonly opcoesItensPorPagina = computed(
+    () => paginacaoPorLargura(this.telaEstreita(), this.telaTablet()).opcoes,
+  );
 
   protected readonly notasFiltradas = computed(() => {
     const termo = this.normalizar(this.busca());
@@ -35,6 +56,26 @@ export class ListaNotas {
   protected readonly notasPaginadas = computed(() =>
     this.notasFiltradas().slice(this.primeiroItem(), this.primeiroItem() + this.itensPorPagina()),
   );
+
+  constructor() {
+    afterNextRender(() => {
+      const estreita = matchMedia('(max-width: 640px)');
+      const tablet = matchMedia('(min-width: 768px) and (max-width: 1024px)');
+      const aplicar = () => {
+        this.telaEstreita.set(estreita.matches);
+        this.telaTablet.set(tablet.matches);
+        this.itensPorPagina.set(paginacaoPorLargura(estreita.matches, tablet.matches).itens);
+        this.primeiroItem.set(0);
+      };
+      aplicar();
+      estreita.addEventListener('change', aplicar);
+      tablet.addEventListener('change', aplicar);
+      this.destroyRef.onDestroy(() => {
+        estreita.removeEventListener('change', aplicar);
+        tablet.removeEventListener('change', aplicar);
+      });
+    });
+  }
 
   alterarBusca(termo: string): void {
     this.busca.set(termo);

@@ -1,10 +1,10 @@
 .principal {
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background: var(--cor-fundo);
   color: var(--cor-texto);
-  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-family: var(--fonte-familia);
 }
 
 .principal__cabecalho {
@@ -17,21 +17,27 @@
 }
 
 .principal__marca {
-  font-weight: 700;
+  font-size: var(--fonte-titulo);
+  font-weight: var(--fonte-peso-medio);
+  line-height: var(--altura-linha-titulo);
   text-decoration: none;
   color: inherit;
 }
 
 .principal__corpo {
   display: flex;
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
 }
 
 .principal__conteudo {
+  display: flex;
+  flex-direction: column;
   width: min(720px, 100%);
   margin: 0 auto;
-  padding: 2rem 1.5rem;
+  padding: 1.25rem 1.5rem;
   flex: 1;
+  min-height: 0;
 }
 
 .principal__rodape {
@@ -45,6 +51,20 @@
 
 .principal__rodape p {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: var(--fonte-corpo-medio);
+  font-weight: var(--fonte-peso-medio);
+  line-height: var(--altura-linha-corpo-medio);
   color: var(--cor-texto);
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .principal__cabecalho,
+  .principal__rodape {
+    padding: 0.75rem 1rem;
+  }
+
+  .principal__conteudo {
+    padding: 0.75rem;
+  }
 }

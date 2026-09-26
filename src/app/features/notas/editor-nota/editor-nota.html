@@ -1,6 +1,11 @@
 <div>
   <p-confirmdialog />
-  <form class="editor-nota" [formGroup]="formulario" (ngSubmit)="salvarNota()">
+  <form
+    class="editor-nota"
+    [class.editor-nota--criar]="!id()"
+    [formGroup]="formulario"
+    (ngSubmit)="salvarNota()"
+  >
     <div class="editor-nota__campo">
       <label
         [class.editor-nota__label--invalido]="formulario.controls.titulo.invalid && formulario.controls.titulo.touched"
@@ -30,7 +35,7 @@
       >
     </div>
 
-    <div class="editor-nota__campo">
+    <div class="editor-nota__campo editor-nota__campo--texto">
       <label
         [class.editor-nota__label--invalido]="formulario.controls.texto.invalid && formulario.controls.texto.touched"
         for="texto"

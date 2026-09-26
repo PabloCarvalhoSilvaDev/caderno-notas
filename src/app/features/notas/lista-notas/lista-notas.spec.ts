@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
 import { NotasService } from '../notas';
-import { ListaNotas } from './lista-notas';
+import { ListaNotas, paginacaoPorLargura } from './lista-notas';
 
 describe('ListaNotas', () => {
   let fixture: ComponentFixture<ListaNotas>;
@@ -25,11 +25,14 @@ describe('ListaNotas', () => {
     expect(fixture.componentInstance).toBeTruthy();
   });
 
-  it('deve exibir o estado vazio quando não há notas', () => {
+  it('deve exibir o estado vazio quando não há notas', async () => {
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const elemento = fixture.nativeElement as HTMLElement;
     expect(elemento.querySelectorAll('.nota-card').length).toBe(0);
     expect(elemento.querySelector('.lista-notas__vazia')?.textContent).toContain(
-      'Nenhuma nota ainda. Crie a primeira.',
+      'Bem-vindo ao Caderno de Notas',
     );
   });
 
@@ -41,6 +44,12 @@ describe('ListaNotas', () => {
     const cards = (fixture.nativeElement as HTMLElement).querySelectorAll('.nota-card');
     expect(cards.length).toBe(2);
     expect(cards[0].textContent).toContain('Ideias para o caderno');
+  });
+
+  it('deve paginar 12 itens no tablet 768–1024', () => {
+    expect(paginacaoPorLargura(true, false)).toEqual({ itens: 4, opcoes: [4, 8, 12] });
+    expect(paginacaoPorLargura(false, true)).toEqual({ itens: 12, opcoes: [12, 24, 36] });
+    expect(paginacaoPorLargura(false, false)).toEqual({ itens: 9, opcoes: [9, 18, 27] });
   });
 
   it('deve filtrar a lista pelo termo da busca', () => {

@@ -3,6 +3,26 @@
 
 :root {
   color-scheme: light;
+
+  --fonte-familia: 'Roboto', sans-serif;
+  --fonte-peso-regular: 400;
+  --fonte-peso-medio: 500;
+
+  --fonte-headline: 1.5rem;
+  --fonte-titulo-grande: 1.375rem;
+  --fonte-titulo: 1rem;
+  --fonte-corpo: 1rem;
+  --fonte-corpo-medio: 0.875rem;
+  --fonte-rotulo: 0.75rem;
+
+  --altura-linha-headline: 2rem;
+  --altura-linha-titulo-grande: 1.75rem;
+  --altura-linha-titulo: 1.5rem;
+  --altura-linha-corpo: 1.5rem;
+  --altura-linha-corpo-medio: 1.25rem;
+  --altura-linha-rotulo: 1rem;
+
+  --p-font-family: var(--fonte-familia);
 }
 
 *,
@@ -11,7 +31,52 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  font-family: var(--fonte-familia);
+  font-weight: var(--fonte-peso-regular);
+  overflow-x: clip;
+}
+
 body {
   margin: 0;
   color-scheme: light;
+  font-size: var(--fonte-corpo);
+  line-height: var(--altura-linha-corpo);
+}
+
+@media (max-width: 640px) {
+  .lista-notas__paginador.p-paginator {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0 0;
+  }
+
+  .lista-notas__paginador .p-paginator-current {
+    flex: 1 0 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .lista-notas__paginador .p-paginator-first,
+  .lista-notas__paginador .p-paginator-last,
+  .lista-notas__paginador .p-paginator-rpp-dropdown {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .lista-notas__paginador.p-paginator {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0 0;
+  }
+
+  .lista-notas__paginador .p-paginator-current {
+    flex: 1 0 100%;
+    justify-content: center;
+    text-align: center;
+  }
 }
