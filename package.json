@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:caderno-notas": "node dist/caderno-notas/server/server.mjs"
+    "serve:ssr:caderno-notas": "node dist/caderno-notas/browser/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
