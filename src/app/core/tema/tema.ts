@@ -10,6 +10,7 @@ export const CORES = {
   placeholder: '#6b7280',
   borda: '#e8e8e4',
   erro: '#d71d1d',
+  sucesso: '#15803d',
 } as const;
 
 const campo = {

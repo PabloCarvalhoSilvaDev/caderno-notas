@@ -43,7 +43,10 @@ describe('ListaNotas', () => {
 
     const cards = (fixture.nativeElement as HTMLElement).querySelectorAll('.nota-card');
     expect(cards.length).toBe(2);
-    expect(cards[0].textContent).toContain('Ideias para o caderno');
+    expect(cards[0].querySelector('h2')?.textContent).toBe('Ideias para o caderno');
+    expect(cards[0].querySelector('.nota-card__texto')?.textContent).toBe(
+      'Texto da primeira nota.',
+    );
   });
 
   it('deve paginar 12 itens no tablet 768–1024', () => {

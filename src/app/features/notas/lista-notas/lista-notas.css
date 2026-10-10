@@ -56,8 +56,8 @@
 .lista-notas__nova {
   padding: 0.5rem 0.9rem;
   border-radius: 8px;
-  background: green;
-  color: #fff;
+  background: var(--cor-sucesso);
+  color: var(--cor-superficie);
   text-decoration: none;
   font-weight: var(--fonte-peso-medio);
   font-size: var(--fonte-corpo-medio);
@@ -163,6 +163,18 @@
   font-size: var(--fonte-titulo);
   font-weight: var(--fonte-peso-medio);
   line-height: var(--altura-linha-titulo);
+}
+
+.nota-card__texto {
+  margin: 0.5rem 0 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  font-size: var(--fonte-corpo-medio);
+  line-height: var(--altura-linha-corpo-medio);
+  color: var(--cor-placeholder);
 }
 
 .nota-card time {

@@ -31,7 +31,8 @@
           @for (nota of notasPaginadas(); track nota.id) {
             <li>
               <a class="nota-card" [routerLink]="['editar', nota.id]">
-                <h2 [attr.title]="nota.titulo">{{ nota.id }}- {{ nota.titulo }}</h2>
+                <h2 [attr.title]="nota.titulo">{{ nota.titulo }}</h2>
+                <p class="nota-card__texto">{{ nota.texto }}</p>
                 <time [attr.datetime]="nota.dataAtualizacao.toISOString()">
                   {{ nota.dataAtualizacao | date: 'dd/MM/yyyy' }}
                 </time>

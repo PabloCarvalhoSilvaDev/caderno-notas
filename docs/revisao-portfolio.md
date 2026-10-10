@@ -28,12 +28,6 @@ Os testes da lista e do editor verificam comportamento visível: estado vazio, f
 
 O produto é um caderno local. Sem uma frase sobre o problema e o limite escolhido, ele se mistura a dezenas de projetos de aula.
 
-Três detalhes de tela parecem rascunho:
-
-- O card da lista mostra o id numérico antes do título.
-- O botão Nova usa `background: green`, fora dos tokens de cor.
-- Cancelar está com `severity="danger"` e Excluir está em `contrast`. A hierarquia visual inverte a ação destrutiva e a ação de voltar.
-
 `OBJETIVOS.md` marca 10 de 56 critérios, quase só responsividade e parte da segurança. Lazy loading, hashing de build, README, redirecionamento de rota inválida e o fluxo de criar, buscar e excluir já estão no código. Quem lê o checklist antes do `src` conclui que o projeto parou no meio.
 
 O `NotasService` — geração de id, JSON corrompido, data inválida, cota do storage — não tem teste. O `catch` da leitura devolve lista vazia em silêncio, e o `JSON.parse` confia no formato com um cast. A busca só aplica `trim` e `toLowerCase` (acentos ficam de fora). Depois de gravar, a lista ordena pelo id, do mais antigo ao mais novo.
@@ -44,7 +38,7 @@ O histórico mistura commits `feat` com mensagens como `verificando publish` e `
 
 1. **README de portfólio.** Problema, URL da demo, stack e a decisão de prerender versus client já estão no `README.md`. Faltam as capturas.
 2. **Ajustar a vitrine que já existe.** Descrição, site da demo e topics `angular` e `typescript` já estão no GitHub. O link da demo está no `README.md` local, ainda sem commit nem push. Faltam as capturas.
-3. **Polir a lista e os botões.** Tirar o id do título, usar token de cor, inverter a hierarquia Excluir / Cancelar e mostrar um trecho do texto no card.
+3. **Polir a lista e os botões.** O card mostra título e um trecho do texto, sem o id. Nova usa `--cor-sucesso`. Excluir está em `danger` e Cancelar em `secondary`.
 4. **Testes do `NotasService`.** JSON corrompido, data inválida, id não numérico e gravação que não derruba a UI.
 5. **Calibrar `OBJETIVOS.md`.** Marcar o que já existe ou tirar o arquivo da raiz pública. Do jeito atual, ele reduz a nota do projeto.
 6. **GitHub Actions** com `npm test` e `npm run build` em cada push.
