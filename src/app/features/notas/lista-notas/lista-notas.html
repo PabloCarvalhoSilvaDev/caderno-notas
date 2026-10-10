@@ -1,7 +1,9 @@
 <section class="lista-notas">
   <header class="lista-notas__topo">
     <h1>Notas</h1>
-    <a routerLink="nova" class="lista-notas__nova"><i class="pi pi-plus"></i> Nota </a>
+    @if (notas().length > 0) {
+      <a routerLink="nova" class="lista-notas__nova"><i class="pi pi-plus"></i> Nota </a>
+    }
   </header>
 
   <div class="lista-notas__painel">
@@ -39,7 +41,7 @@
         </ul>
 
         <p-paginator
-          styleClass="lista-notas__paginador"
+          class="lista-notas__paginador"
           [first]="primeiroItem()"
           [rows]="itensPorPagina()"
           [rowsPerPageOptions]="opcoesItensPorPagina()"
@@ -65,6 +67,9 @@
           </p>
           <p>Crie a primeira nota e comece a organizar o que importa.</p>
         </div>
+        @if (notas().length === 0) {  
+          <a routerLink="nova" class="lista-notas__nova"><i class="pi pi-plus"></i> Nota </a>
+        }
       </div>
     }
   </div>
