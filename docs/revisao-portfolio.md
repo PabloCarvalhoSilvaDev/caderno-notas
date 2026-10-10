@@ -8,13 +8,13 @@ Este arquivo é um norte pessoal. Na raiz pública do repositório, o que um rec
 
 Verificado de novo em 10 de outubro de 2026, direto na API e na página do repositório. A leitura anterior, que tratava o projeto como ausente do perfil, ficou desatualizada.
 
-O repositório [PabloCarvalhoSilvaDev/caderno-notas](https://github.com/PabloCarvalhoSilvaDev/caderno-notas) está público, na branch `master`, no mesmo commit do git local (`da28747`). Ele aparece entre os repositórios do perfil, que agora tem 5 repositórios públicos. A descrição está boa. O campo de site aponta para [https://caderno-notas.netlify.app/notas](https://caderno-notas.netlify.app/notas), e essa página abre no estado vazio, com o título `Notas · Caderno de Notas`. Os topics são `angular20`, `completo` e `portfolio`. Não há licença. O README publicado continua só com instalação e não cita a URL da demo. `OBJETIVOS.md` está na raiz pública. A pasta `docs/` desta revisão ainda não foi enviada.
+O repositório [PabloCarvalhoSilvaDev/caderno-notas](https://github.com/PabloCarvalhoSilvaDev/caderno-notas) está público, na branch `master`, no mesmo commit do git local (`da28747`). Ele aparece entre os repositórios do perfil, que agora tem 5 repositórios públicos. A descrição está boa. O campo de site aponta para [https://caderno-notas.netlify.app/notas](https://caderno-notas.netlify.app/notas), e essa página abre no estado vazio, com o título `Notas · Caderno de Notas`. Os topics agora são `angular` e `typescript`. Não há licença. O README publicado continua só com instalação: o link da demo está no `README.md` local, ainda sem commit nem push. `OBJETIVOS.md` está na raiz pública. A pasta `docs/` desta revisão ainda não foi enviada.
 
 O repositório foi criado a partir do template `arquitetura-angular-recomendada`.
 
 ## Veredito
 
-O código sustenta uma vaga júnior de Angular. O repositório já está público, com descrição e demo no ar. A triagem ainda esbarra no README sem capturas e sem o link da demo, e no checklist público de `OBJETIVOS.md`, que marca 10 de 56 itens.
+O código sustenta uma vaga júnior de Angular. O repositório já está público, com descrição, demo e topics `angular` e `typescript`. A triagem ainda esbarra nas capturas e no README publicado, que ainda não inclui o link da demo, e no checklist público de `OBJETIVOS.md`, que marca 10 de 56 itens.
 
 ## O que convence
 
@@ -43,7 +43,7 @@ O histórico mistura commits `feat` com mensagens como `verificando publish` e `
 ## Ordem de melhoria
 
 1. **README de portfólio.** Problema, URL da demo, stack e a decisão de prerender versus client já estão no `README.md`. Faltam as capturas.
-2. **Ajustar a vitrine que já existe.** A descrição e a demo no GitHub estão certas. Falta o link da demo no README, capturas, e topics mais buscáveis (`angular`, `typescript`) no lugar de `completo`.
+2. **Ajustar a vitrine que já existe.** Descrição, site da demo e topics `angular` e `typescript` já estão no GitHub. O link da demo está no `README.md` local, ainda sem commit nem push. Faltam as capturas.
 3. **Polir a lista e os botões.** Tirar o id do título, usar token de cor, inverter a hierarquia Excluir / Cancelar e mostrar um trecho do texto no card.
 4. **Testes do `NotasService`.** JSON corrompido, data inválida, id não numérico e gravação que não derruba a UI.
 5. **Calibrar `OBJETIVOS.md`.** Marcar o que já existe ou tirar o arquivo da raiz pública. Do jeito atual, ele reduz a nota do projeto.
@@ -60,8 +60,8 @@ Entram na triagem.
 | Documento | Estado | O que falta |
 | --- | --- | --- |
 | `README.md` | Existe, curto | Pitch, capturas, demo, como os dados ficam no navegador, comandos de teste e build |
-| Repositório público | Público, com descrição e demo | Link da demo no README, capturas e topics `angular` e `typescript` |
-| URL da demo | Netlify preparado, link ausente | Homepage do GitHub e primeira linha do README |
+| Repositório público | Público, com descrição, demo e topics `angular` e `typescript` | Publicar o README novo e as capturas |
+| URL da demo | No GitHub e no README local | Enviar o commit para o README publicado passar a citar o link |
 | Capturas | Ausentes | Lista com notas, estado vazio e editor, em desktop e celular |
 | `LICENSE` | Ausente | MIT, ou uma linha explícita de todos os direitos reservados |
 
