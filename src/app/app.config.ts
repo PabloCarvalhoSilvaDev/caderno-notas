@@ -1,8 +1,5 @@
-import { DOCUMENT } from '@angular/common';
 import {
   ApplicationConfig,
-  inject,
-  provideAppInitializer,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
@@ -13,7 +10,7 @@ import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
 
 import { routes } from './app.routes';
-import { aplicarTokens, TEMA_CADERNO } from './core/tema/tema';
+import { TEMA_CADERNO } from './core/tema/tema';
 import { TituloAplicacaoStrategy } from './core/titulo/titulo-aplicacao.strategy';
 
 export const appConfig: ApplicationConfig = {
@@ -30,9 +27,6 @@ export const appConfig: ApplicationConfig = {
         preset: TEMA_CADERNO,
         options: { darkModeSelector: false },
       },
-    }),
-    provideAppInitializer(() => {
-      aplicarTokens(inject(DOCUMENT).documentElement.style);
     }),
   ],
 };
