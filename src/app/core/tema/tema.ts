@@ -28,18 +28,3 @@ export const TEMA_CADERNO = definePreset(Aura, {
     },
   },
 });
-
-export function aplicarTokens(raiz: CSSStyleDeclaration = document.documentElement.style): void {
-  raiz.setProperty('--cor-fundo', CORES.fundo);
-  raiz.setProperty('--cor-superficie', CORES.superficie);
-  raiz.setProperty('--cor-texto', CORES.texto);
-  raiz.setProperty('--cor-texto-campo', CORES.textoCampo);
-  raiz.setProperty('--cor-placeholder', CORES.placeholder);
-  raiz.setProperty('--cor-borda', CORES.borda);
-  raiz.setProperty('--cor-erro', CORES.erro);
-  raiz.setProperty('--p-inputtext-background', CORES.superficie);
-  raiz.setProperty('--p-inputtext-color', CORES.textoCampo);
-  raiz.setProperty('--p-textarea-background', CORES.superficie);
-  raiz.setProperty('--p-textarea-color', CORES.textoCampo);
-  raiz.setProperty('--p-autocomplete-background', CORES.superficie);
-}

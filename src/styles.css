@@ -4,6 +4,19 @@
 :root {
   color-scheme: light;
 
+  --cor-fundo: #b0d5ff;
+  --cor-superficie: #ffffff;
+  --cor-texto: #1f2937;
+  --cor-texto-campo: #1a1a1a;
+  --cor-placeholder: #6b7280;
+  --cor-borda: #e8e8e4;
+  --cor-erro: #d71d1d;
+  --p-inputtext-background: var(--cor-superficie);
+  --p-inputtext-color: var(--cor-texto-campo);
+  --p-textarea-background: var(--cor-superficie);
+  --p-textarea-color: var(--cor-texto-campo);
+  --p-autocomplete-background: var(--cor-superficie);
+
   --fonte-familia: 'Roboto', sans-serif;
   --fonte-peso-regular: 400;
   --fonte-peso-medio: 500;
