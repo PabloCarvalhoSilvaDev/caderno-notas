@@ -24,7 +24,7 @@ Os dados ficam no `localStorage` de propósito. O caderno não tem conta, servid
 
 O limite é o do próprio navegador. As notas são visíveis nas ferramentas de desenvolvedor, somem se o armazenamento for limpo e não atravessam outro navegador ou outro computador. Não cabe senha, token nem nada que precise de confidencialidade. JSON corrompido ou data inválida não derruba a tela: a lista abre vazia ou sem aquela nota. Se a cota estourar, a gravação falha em silêncio e a nota segue só na memória daquela visita.
 
-Capturas — cole as imagens aqui, por exemplo:
+## Capturas de tela
 
 ![Lista de notas vazia](docs/capturas/listaVazia.webp)
 ![Lista de notas preenchida](docs/capturas/listaPreenchida.webp)
