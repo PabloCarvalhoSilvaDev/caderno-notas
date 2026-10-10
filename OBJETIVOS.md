@@ -4,6 +4,8 @@ Lista de critérios que o projeto deve cumprir. Use como norte de qualidade ao i
 
 Contexto: aplicação Angular no navegador, com persistência em `localStorage` e sem backend.
 
+Conferido no código em 10 de outubro de 2026. O que está marcado o projeto já faz. O restante é backlog.
+
 ---
 
 ## 1. Responsividade
@@ -21,9 +23,9 @@ Mesmo sem servidor, o conteúdo das notas é dado do usuário e deve ser tratado
 
 - [X] Texto das notas é renderizado de forma segura (sem interpretar HTML/script digitado pelo usuário).
 - [X] IDs e rotas não permitem ações inesperadas por valores malformados.
-- [ ] Dados lidos do `localStorage` são validados antes de entrar no estado da aplicação (JSON inválido, campos ausentes, tipos errados).
+- [X] Dados lidos do `localStorage` são validados antes de entrar no estado da aplicação (JSON inválido, campos ausentes, tipos errados).
 - [X] Confirmação obrigatória antes de excluir nota.
-- [ ] Não expor dados sensíveis em logs, títulos de página ou mensagens de erro detalhadas.
+- [X] Não expor dados sensíveis em logs, títulos de página ou mensagens de erro detalhadas.
 - [X] Dependências atualizadas; builds de produção sem source maps públicos desnecessários.
 - [ ] Headers e CSP adequados quando houver hospedagem (evitar `unsafe-inline` sem necessidade).
 
@@ -31,67 +33,67 @@ Limite consciente: `localStorage` é visível no próprio navegador. Não armaze
 
 ## 3. Desempenho
 
-- [ ] Primeira tela útil rápida (lista de notas sem espera perceptível em máquina comum).
-- [ ] Rotas carregadas sob demanda (`loadChildren` / lazy loading) para o que não for essencial no boot.
-- [ ] Listas grandes não travam a UI (busca, renderização e atualização de signals eficientes).
-- [ ] Evitar recálculos e re-renders desnecessários (signals, `computed`, `track` em `@for`).
-- [ ] Assets leves; ícones e temas sem inflar o bundle além dos orçamentos do `angular.json`.
-- [ ] Build de produção com hashing de arquivos e orçamentos de tamanho respeitados.
-- [ ] Operações de `localStorage` pontuais (não serializar a cada tecla sem necessidade).
+- [X] Primeira tela útil rápida (lista de notas sem espera perceptível em máquina comum).
+- [X] Rotas carregadas sob demanda (`loadChildren` / lazy loading) para o que não for essencial no boot.
+- [X] Listas grandes não travam a UI (busca, renderização e atualização de signals eficientes).
+- [X] Evitar recálculos e re-renders desnecessários (signals, `computed`, `track` em `@for`).
+- [X] Assets leves; ícones e temas sem inflar o bundle além dos orçamentos do `angular.json`.
+- [X] Build de produção com hashing de arquivos e orçamentos de tamanho respeitados.
+- [X] Operações de `localStorage` pontuais (não serializar a cada tecla sem necessidade).
 
 ## 4. Acessibilidade
 
 - [ ] Navegação completa por teclado (Tab, Enter, Escape em diálogos).
 - [ ] Foco visível e ordem de foco lógica (lista → busca → editor → ações).
-- [ ] Labels associados a campos; botões com nome acessível (não só ícone).
+- [X] Labels associados a campos; botões com nome acessível (não só ícone).
 - [ ] Contraste suficiente em tema claro (e escuro, se existir).
-- [ ] Mensagens de erro e sucesso anunciáveis (não só cor).
-- [ ] Títulos de página coerentes com a tela atual.
-- [ ] Componentes PrimeNG usados com ARIA padrão, sem quebrar leitores de tela.
+- [X] Mensagens de erro e sucesso anunciáveis (não só cor).
+- [X] Títulos de página coerentes com a tela atual.
+- [X] Componentes PrimeNG usados com ARIA padrão, sem quebrar leitores de tela.
 
 ## 5. Usabilidade e produto
 
-- [ ] Criar, editar, buscar e excluir notas de ponta a ponta, sem estados quebrados.
-- [ ] Busca por título e texto com feedback claro (incluindo “nenhum resultado”).
-- [ ] Validação de título e texto com limites claros (obrigatório; título ≤ 60; texto ≤ 600).
-- [ ] Datas de criação e última atualização visíveis e compreensíveis.
-- [ ] Notificações de sucesso e aviso no momento certo, sem spam.
-- [ ] Persistência imediata e previsível: recarregar a página mantém as notas.
-- [ ] Estado vazio inicial compreensível (o que fazer na primeira visita).
-- [ ] Confirmações destrutivas; ações reversíveis quando fizer sentido.
+- [X] Criar, editar, buscar e excluir notas de ponta a ponta, sem estados quebrados.
+- [X] Busca por título e texto com feedback claro (incluindo “nenhum resultado”).
+- [X] Validação de título e texto com limites claros (obrigatório; título ≤ 60; texto ≤ 600).
+- [X] Datas de criação e última atualização visíveis e compreensíveis.
+- [X] Notificações de sucesso e aviso no momento certo, sem spam.
+- [X] Persistência imediata e previsível: recarregar a página mantém as notas.
+- [X] Estado vazio inicial compreensível (o que fazer na primeira visita).
+- [X] Confirmações destrutivas; ações reversíveis quando fizer sentido.
 
 ## 6. Integridade dos dados
 
-- [ ] IDs estáveis e únicos; não colidir ao criar notas.
-- [ ] Recuperação de armazenamento corrompido sem derrubar a aplicação.
-- [ ] Datas serializadas e relidas corretamente (`Date` ↔ ISO/string).
+- [X] IDs estáveis e únicos; não colidir ao criar notas.
+- [X] Recuperação de armazenamento corrompido sem derrubar a aplicação.
+- [X] Datas serializadas e relidas corretamente (`Date` ↔ ISO/string).
 - [ ] Limites de tamanho das notas respeitados também na persistência, não só no formulário.
-- [ ] Comportamento definido quando o `localStorage` está cheio ou indisponível (modo privado, cota).
+- [X] Comportamento definido quando o `localStorage` está cheio ou indisponível (modo privado, cota).
 
 ## 7. Qualidade de código e testes
 
-- [ ] Componentes standalone, signals e rotas no padrão Angular 20 do repositório.
-- [ ] Responsabilidades separadas (serviço de notas, UI, notificações, tema).
+- [X] Componentes standalone, signals e rotas no padrão Angular 20 do repositório.
+- [X] Responsabilidades separadas (serviço de notas, UI, notificações, tema).
 - [ ] Testes unitários das regras de negócio (CRUD, busca, validação, hidratação do storage).
 - [ ] Testes dos fluxos principais da UI (criar, editar, excluir, buscar).
-- [ ] Tipagem estrita; evitar `any` e dados “mágicos” espalhados.
-- [ ] Nomes e textos da interface em português, consistentes com o restante do app.
+- [X] Tipagem estrita; evitar `any` e dados “mágicos” espalhados.
+- [X] Nomes e textos da interface em português, consistentes com o restante do app.
 
 ## 8. Compatibilidade e robustez
 
 - [ ] Funciona nos navegadores atuais (Chrome, Edge, Firefox, Safari recente).
-- [ ] Sem depender de APIs sem fallback quando o ambiente não for browser (SSR/plataforma).
-- [ ] Rotas inválidas redirecionam para um fluxo válido (`/notas`).
+- [X] Sem depender de APIs sem fallback quando o ambiente não for browser (SSR/plataforma).
+- [X] Rotas inválidas redirecionam para um fluxo válido (`/notas`).
 - [ ] Erros de usuário (validação) distintos de falhas inesperadas.
-- [ ] Tema e `color-scheme` coerentes (claro/escuro, se ambos existirem).
+- [X] Tema e `color-scheme` coerentes (claro/escuro, se ambos existirem).
 
 ## 9. Manutenção e entrega
 
-- [ ] README atualizado (como rodar, stack, o que o app faz).
-- [ ] `npm start`, `npm test` e `npm run build` funcionando.
-- [ ] Sem segredos no repositório.
+- [X] README atualizado (como rodar, stack, o que o app faz).
+- [X] `npm start`, `npm test` e `npm run build` funcionando.
+- [X] Sem segredos no repositório.
 - [ ] Commits e PRs pequenos, com propósito claro.
-- [ ] Dependências justificadas; PrimeNG/PrimeIcons usados de forma consistente.
+- [X] Dependências justificadas; PrimeNG/PrimeIcons usados de forma consistente.
 
 ---
 
