@@ -19,12 +19,12 @@ Contexto: aplicação Angular no navegador, com persistência em `localStorage` 
 
 Mesmo sem servidor, o conteúdo das notas é dado do usuário e deve ser tratado com cuidado.
 
-- [ ] Texto das notas é renderizado de forma segura (sem interpretar HTML/script digitado pelo usuário).
-- [ ] IDs e rotas não permitem ações inesperadas por valores malformados.
+- [X] Texto das notas é renderizado de forma segura (sem interpretar HTML/script digitado pelo usuário).
+- [X] IDs e rotas não permitem ações inesperadas por valores malformados.
 - [ ] Dados lidos do `localStorage` são validados antes de entrar no estado da aplicação (JSON inválido, campos ausentes, tipos errados).
-- [ ] Confirmação obrigatória antes de excluir nota.
+- [X] Confirmação obrigatória antes de excluir nota.
 - [ ] Não expor dados sensíveis em logs, títulos de página ou mensagens de erro detalhadas.
-- [ ] Dependências atualizadas; builds de produção sem source maps públicos desnecessários.
+- [X] Dependências atualizadas; builds de produção sem source maps públicos desnecessários.
 - [ ] Headers e CSP adequados quando houver hospedagem (evitar `unsafe-inline` sem necessidade).
 
 Limite consciente: `localStorage` é visível no próprio navegador. Não armazenar senhas, tokens ou dados que precisem de confidencialidade real.
