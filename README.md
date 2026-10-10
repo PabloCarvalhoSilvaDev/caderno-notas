@@ -16,9 +16,13 @@ Guardar uma ideia rápida não deveria exigir conta, servidor nem sincronizaçã
 
 ## Decisão técnica
 
-A lista e a tela de criação são prerender. A edição (`/notas/editar/:id`) renderiza no cliente, porque o id só existe depois que o usuário cria a nota.
+A lista (`/notas`) e a criação (`/notas/nova`) são prerender. As duas rotas não dependem de um id e o HTML inicial não traz notas: no build só existe a casca da tela. Quem abre a demo recebe essa página pronta. As notas entram depois, no navegador.
 
-O servidor nunca lê o `localStorage`. O `NotasService` hidrata as notas em `afterNextRender` e só grava quando `isPlatformBrowser` é verdadeiro. Até essa hidratação, a lista mostra o estado de carregamento em vez de uma lista vazia falsa.
+A edição (`/notas/editar/:id`) renderiza no cliente. O id nasce quando a nota é gravada neste navegador. No build não há uma lista finita de ids para prerender, e o servidor não tem o texto da nota.
+
+Os dados ficam no `localStorage` de propósito. O caderno não tem conta, servidor nem sincronização. O servidor nunca lê essa chave. O `NotasService` hidrata as notas em `afterNextRender` e só grava quando `isPlatformBrowser` é verdadeiro. Até lá, a lista mostra carregamento, não um vazio falso.
+
+O limite é o do próprio navegador. As notas são visíveis nas ferramentas de desenvolvedor, somem se o armazenamento for limpo e não atravessam outro navegador ou outro computador. Não cabe senha, token nem nada que precise de confidencialidade. JSON corrompido ou data inválida não derruba a tela: a lista abre vazia ou sem aquela nota. Se a cota estourar, a gravação falha em silêncio e a nota segue só na memória daquela visita.
 
 <!--
 Capturas — cole as imagens aqui, por exemplo:
