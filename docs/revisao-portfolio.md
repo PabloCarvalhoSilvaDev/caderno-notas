@@ -53,11 +53,11 @@ Entram na triagem.
 
 | Documento | Estado | O que falta |
 | --- | --- | --- |
-| `README.md` | Existe, curto | Pitch, capturas, demo, como os dados ficam no navegador, comandos de teste e build |
-| Repositório público | Público, com descrição, demo e topics `angular` e `typescript` | Publicar o README novo e as capturas |
-| URL da demo | No GitHub e no README local | Enviar o commit para o README publicado passar a citar o link |
-| Capturas | Ausentes | Lista com notas, estado vazio e editor, em desktop e celular |
-| `LICENSE` | Ausente | MIT, ou uma linha explícita de todos os direitos reservados |
+| `README.md` | Pitch, demo, stack, decisão técnica (prerender, client, `localStorage`), funcionalidades e `npm test` / `npm run build` | No GitHub remoto ainda sem a seção **Capturas de tela** publicada (2 commits locais à frente) |
+| Repositório público | Público, com descrição, site da demo e topics `angular` e `typescript` | `git push` para publicar `docs/capturas/` e o README com imagens |
+| URL da demo | No campo *website* do GitHub e no README (local e remoto) | Nada |
+| Capturas | Quatro WebP em `docs/capturas/` (lista vazia, lista preenchida, criação, edição), ligadas no README local | Enviar ao remoto; opcional: versões em largura de celular, se quiser bater com “desktop e celular” |
+| `LICENSE` | MIT na raiz (`LICENSE`) | Nada |
 
 ### Interessantes
 
