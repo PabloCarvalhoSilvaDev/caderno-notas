@@ -72,21 +72,56 @@ export class NotasService {
     }
 
     try {
-      const lidas = JSON.parse(bruto) as Array<
-        Omit<Nota, 'dataCriacao' | 'dataAtualizacao'> & {
-          dataCriacao: string;
-          dataAtualizacao: string;
-        }
-      >;
-      const hidratadas = lidas.map((nota) => ({
-        ...nota,
-        dataCriacao: new Date(nota.dataCriacao),
-        dataAtualizacao: new Date(nota.dataAtualizacao),
-      }));
+      const lidas: unknown = JSON.parse(bruto);
+      if (!Array.isArray(lidas)) {
+        return [];
+      }
+
+      const hidratadas = lidas.flatMap((item) => {
+        const nota = this.hidratarNota(item);
+        return nota ? [nota] : [];
+      });
       return this.ordenarPorId(this.normalizarIds(hidratadas));
     } catch {
       return [];
     }
+  }
+
+  private hidratarNota(item: unknown): Nota | undefined {
+    if (typeof item !== 'object' || item === null) {
+      return undefined;
+    }
+
+    const registro = item as {
+      id?: unknown;
+      titulo?: unknown;
+      texto?: unknown;
+      dataCriacao?: unknown;
+      dataAtualizacao?: unknown;
+    };
+    const dataCriacao = this.dataDoArmazenamento(registro.dataCriacao);
+    const dataAtualizacao = this.dataDoArmazenamento(registro.dataAtualizacao);
+    if (!dataCriacao || !dataAtualizacao) {
+      return undefined;
+    }
+
+    const id = registro.id;
+    return {
+      id: typeof id === 'string' || typeof id === 'number' ? String(id) : '',
+      titulo: typeof registro.titulo === 'string' ? registro.titulo : '',
+      texto: typeof registro.texto === 'string' ? registro.texto : '',
+      dataCriacao,
+      dataAtualizacao,
+    };
+  }
+
+  private dataDoArmazenamento(valor: unknown): Date | undefined {
+    if (typeof valor !== 'string' && typeof valor !== 'number') {
+      return undefined;
+    }
+
+    const data = new Date(valor);
+    return Number.isNaN(data.getTime()) ? undefined : data;
   }
 
   private gravar(notas: Nota[]): void {
@@ -103,7 +138,11 @@ export class NotasService {
     if (!isPlatformBrowser(this.plataforma)) {
       return;
     }
-    localStorage.setItem(CHAVE_ARMAZENAMENTO, JSON.stringify(notas));
+    try {
+      localStorage.setItem(CHAVE_ARMAZENAMENTO, JSON.stringify(notas));
+    } catch {
+      // Cota cheia ou armazenamento bloqueado: a lista em memória continua utilizável.
+    }
   }
 
   private proximoId(notas: Nota[]): string {
