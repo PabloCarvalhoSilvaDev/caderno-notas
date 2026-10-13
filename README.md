@@ -28,8 +28,8 @@ O limite é o do próprio navegador. As notas são visíveis nas ferramentas de 
 
 ![Lista de notas vazia](docs/capturas/listaVazia.webp)
 ![Lista de notas preenchida](docs/capturas/listaPreenchida.webp)
-![nota vazia](docs/capturas/notaVazia.webp)
-![Editor](docs/capturas/notaPreenchida.webp)
+![Criação de nota](docs/capturas/notaVazia.webp)
+![Edição de nota](docs/capturas/notaPreenchida.webp)
 
 ## Funcionalidades
 
@@ -62,3 +62,7 @@ A aplicação fica disponível em `http://localhost:4200/`.
 npm test
 npm run build
 ```
+
+## Segurança
+
+Limites do armazenamento local e como reportar problemas: [SECURITY.md](SECURITY.md).

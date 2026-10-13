@@ -74,8 +74,10 @@ Limite consciente: `localStorage` é visível no próprio navegador. Não armaze
 
 - [X] Componentes standalone, signals e rotas no padrão Angular 20 do repositório.
 - [X] Responsabilidades separadas (serviço de notas, UI, notificações, tema).
-- [ ] Testes unitários das regras de negócio (CRUD, busca, validação, hidratação do storage).
-- [ ] Testes dos fluxos principais da UI (criar, editar, excluir, buscar).
+- [X] Testes de hidratação e integridade do storage no `NotasService` (JSON, datas, ids, cota).
+- [ ] Testes unitários de adicionar, atualizar, busca no serviço e validação.
+- [X] Testes de UI na lista (vazio, filtro) e no editor (preencher, excluir).
+- [ ] Testes de UI de criar nota e de validação do formulário.
 - [X] Tipagem estrita; evitar `any` e dados “mágicos” espalhados.
 - [X] Nomes e textos da interface em português, consistentes com o restante do app.
 
@@ -94,6 +96,7 @@ Limite consciente: `localStorage` é visível no próprio navegador. Não armaze
 - [X] Sem segredos no repositório.
 - [ ] Commits e PRs pequenos, com propósito claro.
 - [X] Dependências justificadas; PrimeNG/PrimeIcons usados de forma consistente.
+- [X] `SECURITY.md` na raiz (limites do app local e reporte).
 
 ---
 
